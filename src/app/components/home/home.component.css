@@ -1,0 +1,47 @@
+.row-1{
+    display: flex;
+    /* justify-content:center; */
+    
+    
+}
+.row-2{
+            display: flex;
+            flex-direction:  row;
+            align-items:baseline ;
+            justify-content:space-between
+        
+        }
+
+ .box1{
+     display: flex;
+     flex-direction: column;
+    justify-content:center;
+    align-self:center
+
+}
+
+.box-2-1{
+    flex-grow: 1;
+} 
+
+.box-2-2{
+    display: flex;
+    flex-direction:  row;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+} 
+
+.box-1-1{
+    display: flex;
+    justify-content:baseline;
+}
+
+.row-model{
+    display: flex;
+    flex-direction:  row;
+    
+}
+
+
+
+

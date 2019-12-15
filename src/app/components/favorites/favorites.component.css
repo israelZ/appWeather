@@ -1,0 +1,38 @@
+.row-1{
+    display: flex;
+    flex-direction:  row;
+    justify-content:space-evenly;
+    flex-wrap:wrap;
+    
+}
+        
+.text-flex{
+    display: flex;
+    justify-content:space-evenly
+}
+
+.bto{
+    display: flex;
+}
+
+/* The Magic */
+.accordion:hover .accordion-item:hover .accordion-item-content,
+.accordion .accordion-item--default .accordion-item-content {
+    height: 6em;
+}
+
+.accordion-item-content,
+.accordion:hover .accordion-item-content {
+    height: 0;
+    overflow: hidden;
+    transition: height .25s;
+}
+
+
+
+.accordion {
+    padding: 0;
+    margin: 0 auto;
+    width: 15rem;
+    font-family: "PT Sans" sans-serif
+}

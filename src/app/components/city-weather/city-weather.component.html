@@ -1,0 +1,187 @@
+
+
+<div class="row-1 ">
+        <div class="jumbotron ml-4 mr-4 p-5 "
+        [ngClass]="(darkSwitch$|async) ? 'bg-cover-w' : 'bg-cover-b border border-white text-white'">
+          
+        <div *ngIf="(today | async) as today">
+            <!-- 1 -->
+            
+            
+            <div class="row-1-1 ">
+              <div class="box-1-1">
+                <div class="box-ins-1">
+                  <span [ngSwitch]="(f_c_switch$| async)">
+                    <div *ngSwitchCase="true">
+                        <div class='display-2' >{{today.Temperature.Imperial.Value}}F</div>
+                  </div>
+                  <div *ngSwitchCase="false">
+                    <div class='display-2' >{{parserCelsius(today.Temperature.Imperial.Value)}}C</div>
+                  </div>
+                  </span>                  
+                  <h4 class='display-5 '>
+                  {{today.WeatherText}} 
+                </h4>
+                </div>
+              
+                <div class="box-ins-2">
+                    <span style="font-size: 20px">
+                        <i class="far fa-clock"></i>
+                      </span> 
+                  <div class="lead">
+                    {{parserDeta(today.LocalObservationDateTime)}}  of the hour {{parserTime(today.LocalObservationDateTime)}}
+                  </div> 
+                </div>
+             
+            </div>
+           
+            <div class="box-1-2">
+              <h3 class="display-4" >{{nameCity}} <br> {{nameCountry}}</h3>
+            </div>
+            <div class="box-1-3 pl-5">
+                <div [ngSwitch]="(flagFavorites|async)">
+                    <div *ngSwitchCase="false">
+                        <span style="font-size: 2rem; color:#802C26;"
+                        [ngClass]="(darkSwitch$|async) ? '' : 'text-white'">
+                            <i (click)="addFavorites()" class="far fa-heart"></i>
+                          </span>  
+                      </div>
+                      <div *ngSwitchCase="true">
+                          <span style="font-size: 2rem; color:#802C26;"
+                          [ngClass]="(darkSwitch$|async) ? '' : 'text-white'">
+                              <i (click)="removeFavorites()" class="fas fa-heart"></i>
+                            </span>
+                      </div>
+                    </div>
+            </div>
+          </div>
+
+          <!-- 2 -->
+          <div class="row-1-2">
+            <div *ngIf="(the5day | async) as the5day">
+              
+              <div class="lead text-center pt-3" >
+                {{the5day.Headline.Text}}
+              </div>
+
+            </div>              
+          </div>
+          
+          </div>
+</div>
+</div>
+
+
+<div class="d-none d-sm-block">
+<div class="row-2 pt-1 pb-4">
+
+  
+  <div *ngIf="(the5day | async) as the5day">
+
+      <div class="row-2-2"> 
+        <div *ngFor="let day  of the5day.DailyForecasts">
+          
+    
+          <div class="card m-2 border bg-cover-card" style="max-width:12rem; height:24rem;">
+            
+            <div class="card-header"
+            [ngClass]="(darkSwitch$|async) ? '' : 'bg-secondary text-white'">
+                <i class="fas fa-calendar-alt"></i>
+              For deta-{{parserDeta(day.Date)}}
+          </div>
+          
+          <div class="card-body"
+          [ngClass]="(darkSwitch$|async) ? '' : 'bg-dark text-white'">
+            <div class="card-title h6 text-center">Weather Forecast</div>
+            <span [ngSwitch]="(f_c_switch$| async)">
+                <div *ngSwitchCase="true">
+                  <p class="text-left"><i class="fas fa-temperature-high"></i> Mxa: {{day.Temperature.Maximum.Value}} F</p>
+                  <p class="text-left"><i class="fas fa-temperature-low"></i> Min: {{day.Temperature.Minimum.Value}} F</p>
+                </div>
+                <div *ngSwitchCase="false">
+                    <p class="text-left"><i class="fas fa-temperature-high"></i> Mxa: {{parserCelsius(day.Temperature.Maximum.Value)}} C</p>
+                    <p class="text-left"><i class="fas fa-temperature-low"></i> Min: {{parserCelsius(day.Temperature.Minimum.Value)}} C</p>   
+                </div>
+                </span>
+            
+            <hr>
+            <p class="text-left"><i class="far fa-sun"></i>
+              Day: {{day.Day.IconPhrase}}</p>
+            <p class="text-left"><i class="fas fa-moon"></i>
+              Night: {{day.Night.IconPhrase}}</p>
+          </div>
+          
+          <div class="card-footer"
+          [ngClass]="(darkSwitch$|async) ? 'text-muted' : 'bg-secondary text-white'">
+              <i class="fas fa-rainbow"></i>  App Weather
+          </div>
+        </div>
+        </div>
+      
+      </div>
+      
+
+  </div>
+  </div>
+  </div>
+
+
+
+
+  <div class="px-5 mx-5 pb-4 d-block d-sm-none">
+  <div class="alert" role="alert"
+  [ngClass]="(darkSwitch$|async) ? 'alert-primary' : 'alert-dark'">
+
+      <div *ngIf="(the5day | async) as the5day">
+      <div *ngFor="let day  of the5day.DailyForecasts">
+      
+          <div class="card shadow-lg my-3"
+          [ngClass]="(darkSwitch$|async) ? 'border border-primary' : 'bg-dark text-white border border-white'">
+              <div class="card-body">
+               
+    <h6 class="alert-heading text-center">
+        <i class="fas fa-calendar-alt"></i>
+        For deta-{{parserDeta(day.Date)}}
+    </h6>
+    <div>
+      <span [ngSwitch]="(f_c_switch$| async)">
+          <div *ngSwitchCase="true">
+            <div class="text-flex">
+              <div >
+                <i class="fas fa-temperature-high"></i>Max: {{day.Temperature.Maximum.Value}} F
+              </div>
+              
+              <div >
+                <i class="fas fa-temperature-low text-right"></i>Min: {{day.Temperature.Minimum.Value}} F
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="false">
+              <div class="text-flex">
+                  <div >
+                    <i class="fas fa-temperature-high"></i>Max: {{parserCelsius(day.Temperature.Maximum.Value)}} C
+                  </div>
+                  
+                  <div >
+                    <i class="fas fa-temperature-low text-right"></i>Min: {{parserCelsius(day.Temperature.Minimum.Value)}} C
+                  </div>
+                </div>
+              </div>
+        </span>
+          <div class="text-center"><i class="far fa-sun"></i>
+            Day: {{day.Day.IconPhrase}}</div>
+          <div class="text-center">
+            <i class="fas fa-moon"></i>
+            Night: {{day.Night.IconPhrase}}
+          </div>
+    </div>
+    
+  </div>
+</div>
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+

@@ -1,0 +1,148 @@
+
+
+ <div class="row-1 px-4 py-2">
+   <div>
+     <img src="../../../assets/hero.jpg"  class="img-fluid img-thumbnail">
+    </div>
+       
+            <div class="lead pt-3 px-2"
+            [ngClass]="(darkSwitch$|async) ? '' : 'text-white'">Herolo challenge</div> 
+            
+            
+          
+  
+  <!-- <div class="box-1-2"> -->
+      <div class="custom-control custom-switch pt-4 px-5 mx-1">
+          <input type="checkbox" class="custom-control-input" id="switch_fc">
+          <label class="custom-control-label" for="switch_fc"
+          [ngClass]="(darkSwitch$|async) ? '' : 'text-white'">Celsius</label>
+        </div>
+        <div class="custom-control custom-switch pt-4 px-2">
+          <input type="checkbox" class="custom-control-input" id="switchDark">
+          <label class="custom-control-label" for="switchDark"
+          [ngClass]="(darkSwitch$|async) ? '' : 'text-white'">Dark</label>
+        </div>
+</div>
+
+
+
+
+
+<div class="row-2 px-4">
+    <!-- <div class="custom-control custom-switch pr-4">
+        <input type="checkbox" class="custom-control-input" id="switch_fc">
+        <label class="custom-control-label" for="switch_fc"
+        [ngClass]="(darkSwitch$|async) ? '' : 'text-white'">Celsius</label>
+      </div>
+    <div class="custom-control custom-switch pl-4">
+        <input type="checkbox" class="custom-control-input" id="switchDark">
+        <label class="custom-control-label" for="switchDark"
+        [ngClass]="(darkSwitch$|async) ? '' : 'text-white'">Dark</label>
+      </div> -->
+
+      
+   <div class="box-2-1">
+      
+      <form #form="ngForm" class="form-inline" (ngSubmit)="onSubmit(form)" novalidate> 
+          
+          <div class="form-group  mx-sm-3 mb-2">
+            <input type="text" class="form-control" name="cityForm" ngModel #first="ngModel"placeholder="Enter city to Search" required>
+          </div>
+            
+            <button type="submit" class="btn  mb-2"
+            [ngClass]="(darkSwitch$|async) ? 'btn-primary' : 'btn-dark border border-white'">
+            <div class="form-inline">
+              <div class="d-none d-lg-block d-xl-block"> Search</div>  
+              <i class="material-icons right">send</i>
+            </div>
+          </button>
+      
+      </form>
+       
+      </div>
+        
+          
+  <div  class="box-2-2 pt-3">
+  
+    <button type="button" class="btn  mr-1 mb-2" (click)="naviByCity()"
+    [ngClass]="(darkSwitch$|async) ? 'btn-success' : 'btn-dark  border border-white'" >
+        <div class="form-inline">
+            <i class="fas fa-home"></i>
+            <div class="d-none d-lg-block d-xl-block"> Home</div>  
+        </div>
+  
+    </button>
+    <button type="button" class="btn ml-1 mb-2" (click)="naviToFavorute()"
+    [ngClass]="(darkSwitch$|async) ? 'btn-danger' : 'btn-dark  border border-white'">
+        <div class="form-inline">
+            <i class="fab fa-gratipay"></i>
+            <div class="d-none d-lg-block d-xl-block"> Favorite</div>  
+          </div>
+    </button>
+  
+  </div>
+      
+</div>
+
+
+<div id="messegs" class="alert  alert-danger alert-dismissible fade" role="alert" >
+  <strong>Message system</strong> Your search is not found, please try again
+  
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<router-outlet></router-outlet>
+
+    
+
+
+
+
+
+<!-- model -->
+
+    <div class="modal fade" id="listCirysModal" tabindex="-1" role="dialog" 
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+           
+             <div class="modal-header"
+             [ngClass]="(darkSwitch$|async) ? 'bg-light' : 'bg-secondary border border-white'">
+              <h5 class="modal-title" >The system found several results according to your search
+                  Please select one of the options
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div> 
+      
+             <div class="modal-body"
+             [ngClass]="(darkSwitch$|async) ? 'bg-light' : 'bg-dark border border-white'">
+                <div *ngFor="let city of resCity">
+                   
+                  <div class="alert" (click)="searchCity(city.LocalizedName)" role="alert"
+                  [ngClass]="(darkSwitch$|async) ? 'alert-info' : 'alert-dark border border-white'">
+                        <div class="lead">
+                          <div class="row-model">
+                              <i class="fas fa-map-marked-alt"></i>
+                            <div class="form-inline">
+                              <strong class="px-2" >City: </strong>{{city.LocalizedName}}<strong class="px-2">Country: </strong>{{city.Country.LocalizedName}}
+                            </div>
+                          </div>
+                        </div> 
+                      </div>
+                  </div>
+            </div>
+        
+          </div>
+        </div>
+      </div> 
+
+
+
+
+
+
+  
